@@ -1,0 +1,29 @@
+{
+  "name": "serverless-spa-cdk",
+  "version": "1.0.0",
+  "description": "Serverless SPA CDK Project - Architectural Design Studio built with AWS CDK, S3, and CloudFront",
+  "private": true,
+  "scripts": {
+    "serve": "npx http-server frontend -p 8000 -o",
+    "serve:python": "cd frontend && python -m http.server 8000",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "keywords": [
+    "aws",
+    "cdk",
+    "spa",
+    "serverless",
+    "cloudfront",
+    "s3",
+    "architectural-design"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nigania6/SERVERLESS-CDK-SPA.git"
+  }
+}
