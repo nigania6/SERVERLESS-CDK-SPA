@@ -50,10 +50,10 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ env.AWS_REGION }}
+          aws-region: ${{ us-east-1 }}
       
       - name: Bootstrap CDK (if needed)
-        run: cdk bootstrap aws://${{ secrets.AWS_ACCOUNT_ID }}/${{ env.AWS_REGION }} || true
+        run: cdk bootstrap aws://${{ secrets.AWS_ACCOUNT_ID }}/${{ us-east-1 }} || true
       
       - name: Synthesize CDK stack
         run: cdk synth
