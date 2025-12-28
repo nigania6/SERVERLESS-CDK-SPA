@@ -1,0 +1,28 @@
+Collecting aws-cdk-lib
+  Using cached aws_cdk_lib-2.233.0-py3-none-any.whl.metadata (77 kB)
+Collecting constructs
+  Using cached constructs-10.4.4-py3-none-any.whl.metadata (2.8 kB)
+Collecting aws-cdk.asset-awscli-v1==2.2.242 (from aws-cdk-lib)
+  Using cached aws_cdk_asset_awscli_v1-2.2.242-py3-none-any.whl.metadata (1.1 kB)
+Collecting aws-cdk.asset-node-proxy-agent-v6<3.0.0,>=2.1.0 (from aws-cdk-lib)
+  Using cached aws_cdk.asset_node_proxy_agent_v6-2.1.0-py3-none-any.whl.metadata (1.1 kB)
+Collecting aws-cdk.cloud-assembly-schema<49.0.0,>=48.20.0 (from aws-cdk-lib)
+  Using cached aws_cdk_cloud_assembly_schema-48.20.0-py3-none-any.whl.metadata (3.9 kB)
+Collecting jsii<2.0.0,>=1.121.0 (from aws-cdk-lib)
+  Using cached jsii-1.122.0-py3-none-any.whl.metadata (79 kB)
+Requirement already satisfied: publication>=0.0.3 in ./venv/lib/python3.12/site-packages (from aws-cdk-lib) (0.0.3)
+Requirement already satisfied: typeguard==2.13.3 in ./venv/lib/python3.12/site-packages (from aws-cdk-lib) (2.13.3)
+Requirement already satisfied: attrs<26.0,>=21.2 in ./venv/lib/python3.12/site-packages (from jsii<2.0.0,>=1.121.0->aws-cdk-lib) (25.4.0)
+Requirement already satisfied: cattrs<25.4,>=1.8 in ./venv/lib/python3.12/site-packages (from jsii<2.0.0,>=1.121.0->aws-cdk-lib) (25.3.0)
+Requirement already satisfied: importlib_resources>=5.2.0 in ./venv/lib/python3.12/site-packages (from jsii<2.0.0,>=1.121.0->aws-cdk-lib) (6.5.2)
+Requirement already satisfied: python-dateutil in ./venv/lib/python3.12/site-packages (from jsii<2.0.0,>=1.121.0->aws-cdk-lib) (2.9.0.post0)
+Requirement already satisfied: typing_extensions<5.0,>=3.8 in ./venv/lib/python3.12/site-packages (from jsii<2.0.0,>=1.121.0->aws-cdk-lib) (4.15.0)
+Requirement already satisfied: six>=1.5 in ./venv/lib/python3.12/site-packages (from python-dateutil->jsii<2.0.0,>=1.121.0->aws-cdk-lib) (1.17.0)
+Using cached aws_cdk_lib-2.233.0-py3-none-any.whl (47.5 MB)
+Using cached aws_cdk_asset_awscli_v1-2.2.242-py3-none-any.whl (19.3 MB)
+Using cached constructs-10.4.4-py3-none-any.whl (62 kB)
+Using cached aws_cdk.asset_node_proxy_agent_v6-2.1.0-py3-none-any.whl (1.5 MB)
+Using cached aws_cdk_cloud_assembly_schema-48.20.0-py3-none-any.whl (207 kB)
+Using cached jsii-1.122.0-py3-none-any.whl (601 kB)
+Installing collected packages: jsii, constructs, aws-cdk.cloud-assembly-schema, aws-cdk.asset-node-proxy-agent-v6, aws-cdk.asset-awscli-v1, aws-cdk-lib
+Successfully installed aws-cdk-lib-2.233.0 aws-cdk.asset-awscli-v1-2.2.242 aws-cdk.asset-node-proxy-agent-v6-2.1.0 aws-cdk.cloud-assembly-schema-48.20.0 constructs-10.4.4 jsii-1.122.0
