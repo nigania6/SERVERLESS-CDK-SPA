@@ -67,7 +67,24 @@ jobs:
 
       - name: Install Lambda dependencies
         run: |
-          pip install -r lambda/weather_ingestion/requirements.txt -t lambda/weather_ingestion/
+          pip install --no-cache-dir -r lambda/weather_ingestion/requirements.txt -t lambda/weather_ingestion/
+      
+      - name: Clean up Lambda dependencies (reduce size)
+        run: |
+          cd lambda/weather_ingestion
+          find . -type d -name '__pycache__' -exec rm -rf {} + 2>/dev/null || true
+          find . -type f -name '*.pyc' -delete
+          find . -type f -name '*.pyo' -delete
+          find . -type d -name '*.dist-info' -exec rm -rf {} + 2>/dev/null || true
+          find . -type d -name 'tests' -exec rm -rf {} + 2>/dev/null || true
+          find . -type d -name 'test' -exec rm -rf {} + 2>/dev/null || true
+          find . -type d -name 'doc' -exec rm -rf {} + 2>/dev/null || true
+          find . -type d -name 'docs' -exec rm -rf {} + 2>/dev/null || true
+          find . -type f -name '*.md' -delete
+          find . -type f -name '*.txt' ! -name 'requirements.txt' -delete
+          find . -type f -name 'LICENSE*' -delete
+          find . -type f -name '*.so.*' -delete
+          cd ../..
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -114,7 +131,24 @@ jobs:
 
       - name: Install Lambda dependencies
         run: |
-          pip install -r lambda/weather_ingestion/requirements.txt -t lambda/weather_ingestion/
+          pip install --no-cache-dir -r lambda/weather_ingestion/requirements.txt -t lambda/weather_ingestion/
+      
+      - name: Clean up Lambda dependencies (reduce size)
+        run: |
+          cd lambda/weather_ingestion
+          find . -type d -name '__pycache__' -exec rm -rf {} + 2>/dev/null || true
+          find . -type f -name '*.pyc' -delete
+          find . -type f -name '*.pyo' -delete
+          find . -type d -name '*.dist-info' -exec rm -rf {} + 2>/dev/null || true
+          find . -type d -name 'tests' -exec rm -rf {} + 2>/dev/null || true
+          find . -type d -name 'test' -exec rm -rf {} + 2>/dev/null || true
+          find . -type d -name 'doc' -exec rm -rf {} + 2>/dev/null || true
+          find . -type d -name 'docs' -exec rm -rf {} + 2>/dev/null || true
+          find . -type f -name '*.md' -delete
+          find . -type f -name '*.txt' ! -name 'requirements.txt' -delete
+          find . -type f -name 'LICENSE*' -delete
+          find . -type f -name '*.so.*' -delete
+          cd ../..
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4

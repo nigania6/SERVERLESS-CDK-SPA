@@ -3,6 +3,7 @@ from aws_cdk import (
     CfnOutput,
     Duration,
     RemovalPolicy,
+    BundlingOptions,
     aws_s3 as s3,
     aws_lambda as lambda_,
     aws_events as events,
@@ -39,7 +40,7 @@ class WeatherPipelineStack(Stack):
         longitude = float(self.node.try_get_context("longitude") or os.getenv("LONGITUDE", "-0.1278"))
         
         # Create Lambda function for weather ingestion
-        # Dependencies are pre-built by build_lambda_deps.sh script
+        # Use Docker bundling with exclusions to reduce package size
         weather_lambda = lambda_.Function(
             self,
             "WeatherIngestionFunction",
@@ -47,6 +48,26 @@ class WeatherPipelineStack(Stack):
             handler="lambda_function.lambda_handler",
             code=lambda_.Code.from_asset(
                 "lambda/weather_ingestion",
+                bundling=BundlingOptions(
+                    image=lambda_.Runtime.PYTHON_3_11.bundling_image,
+                    command=[
+                        "bash", "-c",
+                        "cp -r /asset-input/* /asset-output/ && "
+                        "pip install --no-cache-dir -r /asset-output/requirements.txt -t /asset-output && "
+                        "find /asset-output -type d -name '__pycache__' -exec rm -rf {} + 2>/dev/null || true && "
+                        "find /asset-output -type f -name '*.pyc' -delete && "
+                        "find /asset-output -type f -name '*.pyo' -delete && "
+                        "find /asset-output -type d -name '*.dist-info' -exec rm -rf {} + 2>/dev/null || true && "
+                        "find /asset-output -type d -name 'tests' -exec rm -rf {} + 2>/dev/null || true && "
+                        "find /asset-output -type d -name 'test' -exec rm -rf {} + 2>/dev/null || true && "
+                        "find /asset-output -type d -name 'doc' -exec rm -rf {} + 2>/dev/null || true && "
+                        "find /asset-output -type d -name 'docs' -exec rm -rf {} + 2>/dev/null || true && "
+                        "find /asset-output -type f -name '*.md' -delete && "
+                        "find /asset-output -type f -name '*.txt' ! -name 'requirements.txt' -delete && "
+                        "find /asset-output -type f -name 'LICENSE*' -delete && "
+                        "find /asset-output -type f -name '*.so.*' -delete"
+                    ],
+                ),
             ),
             timeout=Duration.seconds(30),
             memory_size=256,
